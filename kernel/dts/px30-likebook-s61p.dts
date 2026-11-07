@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * Boyue Likebook S61P (Rockchip PX30, 6" ED060XCD e-ink) - WORK IN PROGRESS
+ * Milestone 1: boot to console (UART2) + eMMC + USB gadget network. No display yet.
+ * Derived from the stock vendor DTS (docs/device/rk-kernel.dts); e-ink pieces are in docs/.
+ */
+/dts-v1/;
+#include "px30.dtsi"
+
+/ {
+	model = "Boyue Likebook S61P";
+	compatible = "boyue,likebook-s61p", "rockchip,px30";
+
+	aliases {
+		mmc0 = &emmc;
+		serial2 = &uart2;
+	};
+
+	chosen {
+		stdout-path = "serial2:115200n8";
+	};
+
+	/* Stock firmware reserves these; keep them out of Linux until the EBC driver owns them. */
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		ebc_waveform: waveform@8300000 {
+			reg = <0x0 0x08300000 0x0 0x00100000>;
+			no-map;
+		};
+
+		ebc_framebuffer: framebuffer@10000000 {
+			reg = <0x0 0x10000000 0x0 0x00600000>;
+			no-map;
+		};
+	};
+};
+
+&uart2 {
+	status = "okay";
+};
+
+&emmc {
+	bus-width = <8>;
+	cap-mmc-highspeed;
+	non-removable;
+	status = "okay";
+};
+
+&u2phy {
+	status = "okay";
+};
+
+&u2phy_otg {
+	status = "okay";
+};
+
+&usb20_otg {
+	dr_mode = "peripheral";
+	status = "okay";
+};

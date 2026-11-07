@@ -21,6 +21,8 @@ Options: (a) `rkdeveloptool` in maskrom/loader mode, (b) obtain Boyue official u
 
 ## Phase 3 - Linux bring-up
 - [x] Stock kernel disassembled: TCON regs (docs/px30-eink-tcon-regs.md), waveform engine (docs/waveform-engine.md), /dev/ebc ABI verified on hardware
+- [x] Board DTS skeleton + milestones (`kernel/`), restore script + recovery guide (`scripts/restore.sh`, `docs/recovery.md`)
+- [ ] Milestone 1: boot mainline to console from `boot` partition (needs kernel build + first flash of `boot`)
 - [ ] Write mainline-style PX30 EBC driver using those docs
 - [ ] Mainline kernel with PX30 DTS for this board
 - [ ] Port `rockchip_ebc` (PineNote driver) to PX30 EBC, feed waveform
