@@ -4,7 +4,7 @@
 - [x] Identify SoC, kernel, partition layout, EBC driver in stock kernel
 - [x] Export kernel config and device facts to `docs/device/`
 - [ ] Dump device tree (`/sys/firmware/devicetree/base`) and decompile to DTS
-- [ ] Locate waveform source (`resource` partition or `waveform@8300000`)
+- [x] Waveform located: `trust` partition @ 0x400000 (see backup-manifest.md)
 
 ## Phase 1 - Backup (needs root or Rockchip loader mode)
 adb shell has no root, so raw partitions are unreadable over normal adb.

@@ -24,3 +24,10 @@ f13378c51d24725343eaff3e2e7db348f1ca27936ba8e204c79fbc4080331398  vendor.img
 Not dumped: `userdata` (personal data), `cache`.
 Bootloader reaches Rockusb Loader via `adb reboot bootloader` (VID 2207, PID 330d). `rkdeveloptool rd` reboots back to Android.
 `resource.img` holds `rk-kernel.dtb` and boot logos but no waveform; look for it in `vendor`/`oem` or the boot loader.
+
+## Waveform located
+E Ink waveform `320_R174_ABBE01_ED060XCDU1_TC` (E Ink .wbf header, 291,997 bytes) sits in the **`trust` partition at byte offset 0x400000** (4 MiB), not in `resource`.
+Extract: `dd if=trust.img bs=1 skip=4194304 count=291997 of=waveform.wbf`.
+SHA256 of the extracted file: see below. The blob is E Ink's proprietary data: kept in `backups/private/`, not committed.
+Also found: a second waveform tag `320_R178_AF1521_ED097TC2U1_TC` (9.7" panel) embedded in kernel/boot/recovery images: unused by this unit.
+`14b1e1471cb6ee8502c64143b41e1c6802a092aaaf3e01780844055885bdea15  backups/private/emmc/waveform-ED060XCD.wbf`
