@@ -10,7 +10,7 @@
 adb shell has no root, so raw partitions are unreadable over normal adb.
 Options: (a) `rkdeveloptool` in maskrom/loader mode, (b) obtain Boyue official update.img,
 (c) Magisk-style root via patched boot (needs unlocked bootloader).
-- [ ] Full eMMC image stored privately, SHA256 recorded in `docs/backup-manifest.md`
+- [x] eMMC partition images dumped privately, SHA256 in `docs/backup-manifest.md`
 - [ ] Confirm recovery path (maskrom entry) before any flash
 
 ## Phase 2 - Faster stock (reversible, no flash)
