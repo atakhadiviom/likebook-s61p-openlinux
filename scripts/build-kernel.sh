@@ -12,6 +12,7 @@ docker run --rm -v "$tree":/w -v "$repo/kernel":/cfg:ro -w /w debian:trixie bash
   DEBIAN_FRONTEND=noninteractive apt-get install -y -qq build-essential flex bison bc libssl-dev libelf-dev device-tree-compiler python3 >/dev/null &&
   make ARCH=arm64 defconfig &&
   scripts/kconfig/merge_config.sh -m .config /cfg/s61p.config >/dev/null &&
+  sh /cfg/shrink.sh &&
   make ARCH=arm64 olddefconfig &&
   make ARCH=arm64 -j"$(nproc)" Image rockchip/px30-likebook-s61p.dtb'
 ls -la "$tree/arch/arm64/boot/Image" "$tree/arch/arm64/boot/dts/rockchip/px30-likebook-s61p.dtb"
