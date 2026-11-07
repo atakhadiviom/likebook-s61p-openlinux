@@ -1,26 +1,22 @@
 // SPDX-License-Identifier: GPL-2.0+
 /*
- * Boyue Likebook S61P (Rockchip PX30, 6" ED060XCD e-ink) - WORK IN PROGRESS
- * Milestone 1: boot to console (UART2) + eMMC + USB gadget network. No display yet.
- * Derived from the stock vendor DTS (docs/device/rk-kernel.dts); e-ink pieces are in docs/.
+ * Boyue Likebook S61P (Rockchip PX30, RK809 PMIC, 6" ED060XCD e-ink) - WORK IN PROGRESS
+ * The stock board is a PX30 EVB derivative (rockchip,px30-evb-ddr3-v10-eink), so we reuse the
+ * mainline EVB description for PMIC rails/eMMC and switch off everything this device lacks.
+ * Milestone 1: boot to console (UART2) + USB gadget network. No display yet.
  */
-/dts-v1/;
-#include "px30.dtsi"
+#include "px30-evb.dts"
 
 / {
 	model = "Boyue Likebook S61P";
 	compatible = "boyue,likebook-s61p", "rockchip,px30";
 
-	aliases {
-		mmc0 = &emmc;
-		serial2 = &uart2;
-	};
-
 	chosen {
 		stdout-path = "serial2:115200n8";
+		bootargs = "earlycon=uart8250,mmio32,0xff160000 console=ttyS2,115200n8 rdinit=/init";
 	};
 
-	/* Stock firmware reserves these; keep them out of Linux until the EBC driver owns them. */
+	/* Stock firmware reserves these for the e-ink engine; keep them away from Linux. */
 	reserved-memory {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -38,22 +34,21 @@
 	};
 };
 
+/* No LCD, camera, ethernet on this board. */
+&csi_dphy { status = "disabled"; };
+&display_subsystem { status = "disabled"; };
+&dsi { status = "disabled"; };
+&dsi_dphy { status = "disabled"; };
+&gmac { status = "disabled"; };
+&isp { status = "disabled"; };
+&isp_mmu { status = "disabled"; };
+&vopb { status = "disabled"; };
+&vopb_mmu { status = "disabled"; };
+&vopl { status = "disabled"; };
+&vopl_mmu { status = "disabled"; };
+&sdio { status = "disabled"; };
+
 &uart2 {
-	status = "okay";
-};
-
-&emmc {
-	bus-width = <8>;
-	cap-mmc-highspeed;
-	non-removable;
-	status = "okay";
-};
-
-&u2phy {
-	status = "okay";
-};
-
-&u2phy_otg {
 	status = "okay";
 };
 
