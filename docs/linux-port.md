@@ -25,3 +25,10 @@ A new driver is needed. Starting points: the vendor `drivers/video/rockchip/eink
 
 ## Safety
 Stock images are backed up (`docs/backup-manifest.md`) and the device enters Loader mode with `adb reboot bootloader`, so recovery via `rkdeveloptool wl` works. Never flash `uboot`/`trust`/`idbloader` experimentally.
+
+## Kernel source search (2026-11-07)
+- `rockchip-linux/kernel` branch `develop-4.4` (cloned, 1.1 GB): **no PX30 eink-tcon / `rockchip,eink` driver.** Only generic `rk_fb` and `lcdc`. The EBC driver was Android-SDK-only.
+- Public `ebc-dev/tcon/eink_tcon.c` exists for RK3568/RV1106 (e.g. BPI-R2PRO-BSP, Ralim/ebc-dev-reverse-engineering, DorianRudolph/pinenotes). It is a newer register set, useful for structure, not a drop-in.
+- GitHub code search for `px30-eink-tcon`: no results.
+
+Consequence: the PX30 tcon registers must come from (a) a Boyue GPL source request (kernel 4.4.138 built 2020-08-12 by `builder@lemonx1`), (b) disassembling the stock `kernel.img` (the driver is built in; `CONFIG_EBC=y`), or (c) tracing `/dev/ebc` ioctls and MMIO on a running unit.
