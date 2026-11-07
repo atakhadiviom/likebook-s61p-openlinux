@@ -20,7 +20,8 @@ Options: (a) `rkdeveloptool` in maskrom/loader mode, (b) obtain Boyue official u
 - [ ] Publish `scripts/debloat.sh` plus revert script
 
 ## Phase 3 - Linux bring-up
-- [ ] Fetch vendor 4.4 kernel source (Rockchip develop-4.4 or Boyue GPL request)
+- [x] Stock kernel disassembled: TCON regs (docs/px30-eink-tcon-regs.md), waveform engine (docs/waveform-engine.md), /dev/ebc ABI verified on hardware
+- [ ] Write mainline-style PX30 EBC driver using those docs
 - [ ] Mainline kernel with PX30 DTS for this board
 - [ ] Port `rockchip_ebc` (PineNote driver) to PX30 EBC, feed waveform
 - [ ] Boot Alpine/Debian armhf/arm64 rootfs from SD card first (non-destructive)
