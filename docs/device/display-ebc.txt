@@ -1,0 +1,12 @@
+Linux version 4.4.138 (builder@lemonx1) (gcc version 6.3.1 20170404 (Linaro GCC 6.3-2017.05) ) #72 SMP PREEMPT Wed Aug 12 16:35:36 CST 2020
+MemTotal:         969772 kB
+MemFree:           29628 kB
+MemAvailable:     539848 kB
+crw-rw-rw- 1 root system 10, 243 2026-11-07 19:34 /dev/ebc
+
+/dev/graphics:
+total 0
+crw-rw---- 1 root graphics 29,   0 2026-11-07 19:34 fb0
+
+1024,768
+32

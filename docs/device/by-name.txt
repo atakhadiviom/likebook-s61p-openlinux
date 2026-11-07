@@ -1,0 +1,17 @@
+total 0 total 0
+backup -> /dev/block/mmcblk1p8
+boot -> /dev/block/mmcblk1p6
+cache -> /dev/block/mmcblk1p10
+frp -> /dev/block/mmcblk1p15
+kernel -> /dev/block/mmcblk1p5
+metadata -> /dev/block/mmcblk1p12
+misc -> /dev/block/mmcblk1p3
+oem -> /dev/block/mmcblk1p14
+recovery -> /dev/block/mmcblk1p7
+resource -> /dev/block/mmcblk1p4
+security -> /dev/block/mmcblk1p9
+system -> /dev/block/mmcblk1p11
+trust -> /dev/block/mmcblk1p2
+uboot -> /dev/block/mmcblk1p1
+userdata -> /dev/block/mmcblk1p16
+vendor -> /dev/block/mmcblk1p13

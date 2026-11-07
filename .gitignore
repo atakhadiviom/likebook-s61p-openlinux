@@ -1,0 +1,6 @@
+# Private/proprietary dumps: never commit
+backups/
+*.img
+*.bin
+*.dtb.raw
+.DS_Store

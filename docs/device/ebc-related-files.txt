@@ -1,0 +1,6 @@
+/sys/devices/virtual/misc/ebc
+/sys/devices/platform/eink/waveform_version
+/sys/class/misc/ebc
+/sys/firmware/devicetree/base/eink/waveform-region
+/sys/firmware/devicetree/base/reserved-memory/waveform@8300000
+/dev/ebc
