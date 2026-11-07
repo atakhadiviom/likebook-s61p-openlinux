@@ -11,13 +11,14 @@ Accepted PVI `mode_version` values: 0x12, 0x18, 0x19, 0x20, 0x23. Header byte 0x
 5. The software EBC engine picks a frame sequence by `(mode, temperature range)`, then for each pixel looks up `lut[phase][old][new]`, packs 4 pixels/byte (2-bit) and DMAs that phase buffer to the TCON (`px30-eink-tcon-regs.md`).
 
 ## What the real ED060XCD file contains (decoded OK)
-8 modes x 14 temperature ranges (temperature thresholds at hdr 0x30: 0,3,6,9,12,15,18,21,24,27,30,33,38,43,48,71 °C).
-Phases per range (cold -> hot):
-- mode 0 (init/clear): 150 → 13
-- mode 1: 73 → 12; mode 2/3: 131 → 38 (GC16-class full quality)
-- mode 4/5: 131 → 38 / 37 → 4 (partial)
-- mode 6: 35 → 10; mode 7: 84 → 24 (fast A2/DU-class)
-Phase counts fall monotonically with temperature, which independently confirms the decoder.
+8 modes (0-7) x 14 temperature ranges; a 16-byte threshold table sits at hdr 0x30 (`00 03 06 09 0c 0f 12 15 18 1b 1e 21 26 2b 30 47`, assumed °C).
+Phases per range (index 0..13):
+- mode 0: 150 134 118 103 89 159 135 111 99 87 79 71 63 59 (init/clear class)
+- mode 1: 73 65 57 50 43 37 31 25 22 19 17 15 13 12
+- modes 2-5: 131 116 102 90 77 66 55 46 38 38 38 38 38 38 (identical counts, different LUTs: GC16/GL16-class)
+- mode 6: 35 31 28 24 21 17 15 12 10 x6 (fast)
+- mode 7: 84 75 65 58 49 42 35 29 24 x6
+Phase counts fall with range index for each mode, which supports the decoder. Pixel-level LUT values are not yet cross-checked against a real refresh.
 
 ## Open items
 - Exact meaning of each mode number (which is GC16/GL16/DU/A2): confirm via `get_wf_mode_index` mapping.
